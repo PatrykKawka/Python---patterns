@@ -9,19 +9,21 @@ excel.Visible = False
 excel.DisplayAlerts = False
 excel.AskToUpdateLinks = False
 
-wb = excel.Workbooks.Open(FILE_PATH)
-wb.RefreshAll()
-time.sleep(60)
+wb= None
+try: 
 
-excel.CalculateUntilAsyncQueriesDonce()
+    wb = excel.Workbooks.Open(FILE_PATH)
+    wb.RefreshAll()
+    time.sleep(60)
 
+    excel.CalculateUntilAsyncQueriesDone()
 
-wb.Save()
-wb.Close()
-excel.Quit()
+    wb.Save()
+    wb.Close()
 
-time.sleep(10)
-
-del wb
-del excel
-gc.collect()
+finally: 
+    excel.Quit()
+    time.sleep(10)
+    del wb
+    del excel
+    gc.collect()
