@@ -9,21 +9,31 @@ excel.Visible = False
 excel.DisplayAlerts = False
 excel.AskToUpdateLinks = False
 
-wb= None
-try: 
-
+wb = None
+try:
     wb = excel.Workbooks.Open(FILE_PATH)
     wb.RefreshAll()
-    time.sleep(60)
 
     excel.CalculateUntilAsyncQueriesDone()
 
     wb.Save()
     wb.Close()
+    wb = None
 
-finally: 
-    excel.Quit()
-    time.sleep(10)
+finally:
+    if wb is not None:
+        try:
+            wb.Close(SaveChanges=False)
+        except Exception as e:
+            print(f"Ostrzeżenie: {e}")
+
+    if excel is not None:
+        try:
+            excel.Quit()
+        except Exception as e:
+            print(f"Ostrzeżenie: {e}")
+
     del wb
     del excel
+
     gc.collect()
