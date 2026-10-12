@@ -12,7 +12,7 @@
 #   3. Zliczenia fraz ważymy tymi krotnościami (mnożenie macierz rzadka x wektor)
 #   4. Usuwamy frazy zbędne (krótsze frazy "pochłonięte" przez dłuższe)
 # ==============================================================================
-python
+
 from sklearn.feature_extraction.text import CountVectorizer
 
 # --- PARAMETRY ---
