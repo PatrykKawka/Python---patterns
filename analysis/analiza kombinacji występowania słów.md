@@ -1,3 +1,19 @@
+python
+# ==============================================================================
+# N-GRAMY W TYTUŁACH TRANSAKCJI: najczęstsze słowa i frazy (wersja zoptymalizowana)
+# ------------------------------------------------------------------------------
+# Pytanie: "Jakie słowa i kombinacje słów najczęściej występują w tych danych?"
+#
+# Założenia wejściowe:
+#   - ramka `transakcje` z kolumną "tytuł_transakcji" (oczyszczony tekst)
+#
+# Pomysł w skrócie:
+#   1. Tytuły przelewów są szablonowe -> liczymy n-gramy tylko dla UNIKALNYCH tytułów
+#   2. Krotność każdego tytułu traktujemy jako wagę (ile razy wystąpił w danych)
+#   3. Zliczenia fraz ważymy tymi krotnościami (mnożenie macierz rzadka x wektor)
+#   4. Usuwamy frazy zbędne (krótsze frazy "pochłonięte" przez dłuższe)
+# ==============================================================================
+
 from sklearn.feature_extraction.text import CountVectorizer
 
 # --- PARAMETRY ---
